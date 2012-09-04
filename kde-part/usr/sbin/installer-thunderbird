@@ -1,0 +1,3 @@
+#! /bin/sh
+
+xterm -fg black -bg grey -hold -T instaluji... -e apt-get install mozilla-thunderbird mozilla-thunderbird-cs mozilla-thunderbird-sk -y

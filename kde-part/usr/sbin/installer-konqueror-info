@@ -1,0 +1,26 @@
+#! /bin/bash
+
+export MAIN_DIALOG='
+
+<window title="Konqueror" window_position="1">
+
+<vbox>
+    <frame>
+      <hbox>
+	<pixmap icon_size="6">
+	  <input file stock="gtk-info"></input>
+	</pixmap>
+	<text wrap="true" width-chars="25" use-markup="true">
+	  <label>"Konqueror je součástí grafického prostředí KDE"</label>
+	</text>
+      </hbox>
+    </frame>
+
+    <hbox>
+      <button ok></button>
+    </hbox>
+</vbox>
+</window>
+'
+
+gtkdialog --program=MAIN_DIALOG

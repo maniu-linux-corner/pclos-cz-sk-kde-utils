@@ -1,0 +1,54 @@
+#! /bin/sh
+
+export MAIN_DIALOG='
+
+<window title="Výběr jazyka" window_position="1" width_request="300" heigth_request="300">
+<vbox>
+
+<text><label>" "</label></text>
+
+    <text wrap="true" use-markup="true">
+	<label>"<span font-family='"'dejavu'"' weight='"'bold'"' size='"'large'"'>Vyberte jazyk</span>"</label>
+    </text>
+
+<hbox homogeneous="true">
+	<frame>
+	    <pixmap>
+		<input file>/usr/share/pclinuxos/pics/cz.png</input>
+	    </pixmap>
+	    <button>
+		<label>"Nainstalovat"</label>
+		<action>xterm -fg black -bg grey -hold -T instaluji... -e apt-get install task-LO-cs-lang -y</action>
+		<action type="exit">exit 0</action>
+	    </button>
+	</frame>
+
+	<frame>
+	    <pixmap>
+		<input file>/usr/share/pclinuxos/pics/sk.png</input>
+	    </pixmap>
+	    <button>
+		<label>"Nainštalovať"</label>
+		<action>xterm -fg black -bg grey -hold -T instaluji... -e apt-get install task-LO-sk-lang -y</action>
+		<action>env LANGUAGE=sk /usr/sbin/draklive-install-sk</action>
+		<action type="exit">exit 0</action>
+	    </button>
+	</frame>
+</hbox>
+
+<hbox>
+      <button>
+        <input file>/usr/share/pclinuxos/pics/exit.png</input>
+	    <label>"Zrušit  "</label>
+	    <action type="exit">exit 0</action>
+      </button>
+</hbox>
+
+</vbox>
+
+</window>
+'
+
+gtkdialog --program=MAIN_DIALOG
+
+exit 0

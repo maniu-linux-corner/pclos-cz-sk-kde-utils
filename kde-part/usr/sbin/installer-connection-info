@@ -1,0 +1,50 @@
+#! /bin/bash
+
+export MAIN_DIALOG='
+<window title="Informace o připojení" window_position="1">
+<vbox>
+    <text wrap="true" width-chars="40" use-markup="true">
+	<label>" "</label>
+    </text>
+ <hbox homogeneous="true">
+   <frame Ethernet>
+    <text wrap="true" width-chars="20" use-markup="true">
+	<label>" "</label>
+    </text>
+     <text>
+       <input>cat /etc/sysconfig/network-scripts/ifcfg-eth0</input>
+     </text>
+     <text>
+       <label>This is a static text.</label>
+       <input>cat /etc/sysconfig/network-scripts/ifcfg-eth1</input>
+     </text>
+   </frame>
+
+   <frame WiFi>
+    <text wrap="true" width-chars="20" use-markup="true">
+	<label>" "</label>
+    </text>
+     <text>
+       <input>cat /etc/sysconfig/network-scripts/ifcfg-wlan0</input>
+     </text>
+   </frame>
+ </hbox>
+
+ <hbox>
+   <frame DNS servery>
+    <text wrap="true" width-chars="20" use-markup="true">
+	<label>" "</label>
+    </text>
+     <text>
+       <input>cat /etc/resolv.conf | grep nameserver</input>
+     </text>
+   </frame>
+ </hbox>
+<hbox>
+   <button ok></button>
+</hbox>
+</vbox>
+</window>
+'
+
+gtkdialog --program=MAIN_DIALOG
