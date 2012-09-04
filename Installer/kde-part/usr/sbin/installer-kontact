@@ -1,0 +1,3 @@
+#! /bin/sh
+
+xterm -fg black -bg grey -hold -T instaluji... -e apt-get install kdepim4-kmail kdepim4-kontact kdepim4-kaddressbook -y

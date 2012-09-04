@@ -1,0 +1,3 @@
+#! /bin/sh
+
+xterm -fg black -bg grey -hold -T instaluji... -e apt-get install pragha -y

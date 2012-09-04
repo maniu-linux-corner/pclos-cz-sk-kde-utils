@@ -1,0 +1,888 @@
+#! /bin/sh
+
+#################################################################
+# Vytvořeno pro české vydání PCLinuxOSu 2010
+# Created for the Czech edition of PCLinuxOS 2010
+# od / by Migelo
+# "WMSUDO" od pinoc (getopenoffice). Děkuji
+# "WMSUDO" by pinoc (getopenoffice). Thanks
+#################################################################
+
+XEI=/tmp/xei
+
+for idx in synaptic smart ksmarttray kpackagekit apt-get
+do 
+ if [ -n "`pidof $idx`" ];then
+  zenity --title="$TITLE" --error --text "Prosím ukončete '$idx' a spusťte Installer znovu."
+  /bin/rm -f $XEI
+  exit 0
+ fi
+done
+
+if [ ! -e $XEI ];then
+  if [ -r /usr/bin/gksu ]; then WMSUDO=/usr/bin/gksu; fi
+  if [ -r /usr/lib/kde4/libexec/kdesu ]; then WMSUDO=/usr/lib/kde4/libexec/kdesu; fi
+  if [ -r /usr/bin/kdesu ]; then WMSUDO=/usr/bin/kdesu; fi
+  echo "#"'!/bin/bash' > $XEI
+  if [ "$UID" != "0" ]; then echo $WMSUDO installer >> $XEI; else echo installer >> $XEI; fi
+  chmod a+x $XEI
+  $XEI &
+  exit 0
+fi
+
+if [ "$UID" != "0" ]; then
+  $XEI &
+  exit 0
+fi
+
+xterm -fg black -bg grey -T "Probíhá aktualizace balíčků. Prosím čekejte..." -e apt-get update
+
+
+export MAIN_DIALOG='
+
+<window title="Installer" window_position="1">
+<vbox>
+  <notebook labels="Internet|Kancelář|Video|Zvuk|Grafika|Wine|Ostatní|Tisk a skenování">
+    
+      <notebook labels="Internetové prohlížeče|Komunikace|Pošta|Nástroje">
+<vbox>
+
+	<hbox>
+	    <frame Firefox>
+		<pixmap>
+		    <input file>/usr/share/pclinuxos/installer/icons/internet/firefox.png</input>
+		</pixmap>
+		<button>
+		    <label>"Nainstalovat"</label>
+		    <action>/usr/sbin/installer-firefox</action>
+		</button>
+	    </frame>
+
+	<frame Opera>
+	    <pixmap>
+		<input file>/usr/share/pclinuxos/installer/icons/internet/opera.png</input>
+	    </pixmap>
+	    <button>
+		<label>"Nainstalovat"</label>
+		<action>/usr/sbin/installer-opera</action>
+	    </button>
+	</frame>
+
+	<frame Chromium>
+	    <pixmap>
+		<input file>/usr/share/pclinuxos/installer/icons/internet/chromium.png</input>
+	    </pixmap>
+	    <button>
+		<label>"Nainstalovat"</label>
+		<action>/usr/sbin/installer-chromium</action>
+	    </button>
+	</frame>
+      </hbox>
+
+      <hbox>
+	<frame Konqueror>
+	    <pixmap>
+		<input file>/usr/share/pclinuxos/installer/icons/internet/konqueror.png</input>
+	    </pixmap>
+	    <button>
+		<label>"Informace"</label>
+		<action>/usr/sbin/installer-konqueror-info</action>
+	    </button>
+	</frame>
+
+	<frame Midori>
+	    <pixmap>
+		<input file>/usr/share/pclinuxos/installer/icons/internet/midori.png</input>
+	    </pixmap>
+	    <button>
+		<label>"Nainstalovat"</label>
+		<action>/usr/sbin/installer-midori</action>
+	    </button>
+	</frame>
+
+	<frame Seamonkey>
+	    <pixmap>
+		<input file>/usr/share/pclinuxos/installer/icons/internet/seamonkey.png</input>
+	    </pixmap>
+	    <button>
+		<label>"Nainstalovat"</label>
+		<action>/usr/sbin/installer-seamonkey</action>
+	    </button>
+	</frame>
+
+    </hbox>
+
+    <hbox>
+	<frame Arora>
+	    <pixmap>
+		<input file>/usr/share/pclinuxos/installer/icons/internet/arora.png</input>
+	    </pixmap>
+	    <button>
+		<label>"Nainstalovat"</label>
+		<action>/usr/sbin/installer-arora</action>
+	    </button>
+	</frame>
+
+	<frame SRWare Iron>
+	    <pixmap>
+		<input file>/usr/share/pclinuxos/installer/icons/internet/iron.png</input>
+	    </pixmap>
+	    <button>
+		<label>"Nainstalovat"</label>
+		<action>/usr/sbin/installer-iron</action>
+	    </button>
+	</frame>
+    </hbox>
+    </vbox>
+
+    <vbox>
+    <hbox>
+	<frame Kopete>
+	    <pixmap>
+		<input file>/usr/share/pclinuxos/installer/icons/internet/kopete.png</input>
+	    </pixmap>
+	    <button>
+		<label>"Nainstalovat"</label>
+		<action>/usr/sbin/installer-kopete</action>
+	    </button>
+	</frame>
+
+	<frame Pidgin>
+	    <pixmap>
+		<input file>/usr/share/pclinuxos/installer/icons/internet/pidgin.png</input>
+	    </pixmap>
+	    <button>
+		<label>"Nainstalovat"</label>
+		<action>/usr/sbin/installer-pidgin</action>
+	    </button>
+	</frame>
+
+	<frame Skype>
+	    <pixmap>
+		<input file>/usr/share/pclinuxos/installer/icons/internet/skype.png</input>
+	    </pixmap>
+	    <button>
+		<label>"Nainstalovat"</label>
+		<action>/usr/sbin/installer-skype</action>
+	    </button>
+	</frame>
+    </hbox>
+
+    <hbox>
+	<frame XChat>
+	    <pixmap>
+		<input file>/usr/share/pclinuxos/installer/icons/internet/xchat.png</input>
+	    </pixmap>
+	    <button>
+		<label>"Nainstalovat"</label>
+		<action>/usr/sbin/installer-xchat</action>
+	    </button>
+	</frame>
+
+	<frame Gajim>
+	    <pixmap>
+		<input file>/usr/share/pclinuxos/installer/icons/internet/gajim.png</input>
+	    </pixmap>
+	    <button>
+		<label>"Nainstalovat"</label>
+		<action>/usr/sbin/installer-gajim</action>
+	    </button>
+	</frame>
+
+	<frame PSI>
+	    <pixmap>
+		<input file>/usr/share/pclinuxos/installer/icons/internet/psi.png</input>
+	    </pixmap>
+	    <button>
+		<label>"Nainstalovat"</label>
+		<action>/usr/sbin/installer-psi</action>
+	    </button>
+	</frame>
+    </hbox>
+
+    </vbox>
+
+    <vbox>
+    <hbox>
+	<frame Kontact>
+	    <pixmap>
+		<input file>/usr/share/pclinuxos/installer/icons/internet/kontact.png</input>
+	    </pixmap>
+	    <button>
+		<label>"Nainstalovat"</label>
+		<action>/usr/sbin/installer-kontact</action>
+	    </button>
+	</frame>
+
+	<frame Thunderbird>
+	    <pixmap>
+		<input file>/usr/share/pclinuxos/installer/icons/internet/thunderbird.png</input>
+	    </pixmap>
+	    <button>
+		<label>"Nainstalovat"</label>
+		<action>/usr/sbin/installer-thunderbird</action>
+	    </button>
+	</frame>
+
+    </hbox>
+<hbox>
+	<frame Balsa>
+	    <pixmap>
+		<input file>/usr/share/pclinuxos/installer/icons/internet/balsa.png</input>
+	    </pixmap>
+	    <button>
+		<label>"Nainstalovat"</label>
+		<action>/usr/sbin/installer-balsa</action>
+	    </button>
+	</frame>
+
+	<frame Claws Mail>
+	    <pixmap>
+		<input file>/usr/share/pclinuxos/installer/icons/internet/claws-mail.png</input>
+	    </pixmap>
+	    <button>
+		<label>"Nainstalovat"</label>
+		<action>/usr/sbin/installer-claws-mail</action>
+	    </button>
+	</frame>
+
+	<frame Sylpheed>
+	    <pixmap>
+		<input file>/usr/share/pclinuxos/installer/icons/internet/sylpheed.png</input>
+	    </pixmap>
+	    <button>
+		<label>"Nainstalovat"</label>
+		<action>/usr/sbin/installer-sylpheed</action>
+	    </button>
+	</frame>
+    </hbox>
+
+    </vbox>
+
+    <vbox>
+    <hbox>
+	<frame Ktorrent>
+	    <pixmap>
+		<input file>/usr/share/pclinuxos/installer/icons/internet/ktorrent.png</input>
+	    </pixmap>
+	    <button>
+		<label>"Nainstalovat"</label>
+		<action>/usr/sbin/installer-ktorrent</action>
+	    </button>
+	</frame>
+
+	<frame EiskaltDC++>
+	    <pixmap>
+ 		<input file>/usr/share/pclinuxos/installer/icons/internet/eiskaltdc.png</input>
+	    </pixmap>
+	    <button>
+		<label>"Nainstalovat"</label>
+		<action>/usr/sbin/installer-eiskaltdc</action>
+	    </button>
+	</frame>
+    </hbox>
+
+    <hbox>
+	<frame Esmska>
+	    <pixmap>
+		<input file>/usr/share/pclinuxos/installer/icons/internet/esmska.png</input>
+	    </pixmap>
+	    <button>
+		<label>"Nainstalovat"</label>
+		<action>/usr/sbin/installer-esmska</action>
+	    </button>
+	</frame>
+
+	<frame jDownloader>
+	    <pixmap>
+		<input file>/usr/share/pclinuxos/installer/icons/internet/JDownloader.png</input>
+	    </pixmap>
+	    <button>
+		<label>"Nainstalovat"</label>
+		<action>/usr/sbin/installer-jdownloader</action>
+	    </button>
+	</frame>
+
+    </hbox>
+    </vbox>
+
+</notebook>
+
+<vbox>
+    <text wrap="true" use-markup="true">
+	<label>" "</label>
+    </text>
+
+    <text wrap="true" use-markup="true">
+	<label>"<b>Kancelář</b>"</label>
+    </text>
+
+    <text wrap="true" use-markup="true">
+	<label>" "</label>
+    </text>
+
+    <hbox>
+	<frame Libre Office>
+	    <pixmap>
+		<input file>/usr/share/pclinuxos/installer/icons/office/libreoffice.png</input>
+	    </pixmap>
+	    <button>
+		<label>"Nainstalovat"</label>
+		<action>/usr/sbin/installer-lo-cs-sk</action>
+	    </button>
+	</frame>
+
+	<frame KOffice>
+	    <pixmap>
+		<input file>/usr/share/pclinuxos/installer/icons/office/koffice.png</input>
+	    </pixmap>
+	    <button>
+		<label>"Nainstalovat"</label>
+		<action>/usr/sbin/installer-koffice</action>
+	    </button>
+	</frame>
+    </hbox>
+
+    <hbox>
+	<frame KDE PIM>
+	    <pixmap>
+		<input file>/usr/share/pclinuxos/installer/icons/office/kdepim.png</input>
+	    </pixmap>
+	    <button>
+		<label>"Nainstalovat"</label>
+		<action>/usr/sbin/installer-kdepim</action>
+	    </button>
+	</frame>
+
+	<frame Scribus>
+	    <pixmap>
+		<input file>/usr/share/pclinuxos/installer/icons/office/scribus.png</input>
+	    </pixmap>
+	    <button>
+		<label>"Nainstalovat"</label>
+		<action>/usr/sbin/installer-scribus</action>
+	    </button>
+	</frame>
+
+	<frame GCStar>
+	    <pixmap>
+		<input file>/usr/share/pclinuxos/installer/icons/office/gcstar.png</input>
+	    </pixmap>
+	    <button>
+		<label>"Nainstalovat"</label>
+		<action>/usr/sbin/installer-gcstar</action>
+	    </button>
+	</frame>
+
+    </hbox>
+</vbox>
+
+<vbox>
+    <text wrap="true" use-markup="true">
+	<label>" "</label>
+    </text>
+
+    <text wrap="true" use-markup="true">
+	<label>"<b>Přehrávače</b>"</label>
+    </text>
+
+    <text wrap="true" use-markup="true">
+	<label>" "</label>
+    </text>
+
+    <hbox>
+	<frame Kaffeine>
+	    <pixmap>
+		<input file>/usr/share/pclinuxos/installer/icons/video/kaffeine.png</input>
+	    </pixmap>
+	    <button>
+		<label>"Nainstalovat"</label>
+		<action>/usr/sbin/installer-kaffeine</action>
+	    </button>
+	</frame>
+
+	<frame SMPlayer>
+	    <pixmap>
+		<input file>/usr/share/pclinuxos/installer/icons/video/smplayer.png</input>
+	    </pixmap>
+	    <button>
+		<label>"Nainstalovat"</label>
+		<action>/usr/sbin/installer-smplayer</action>
+	    </button>
+	</frame>
+
+	<frame VLC>
+	    <pixmap>
+		<input file>/usr/share/pclinuxos/installer/icons/video/vlc.png</input>
+	    </pixmap>
+	    <button>
+		<label>"Nainstalovat"</label>
+		<action>/usr/sbin/installer-vlc</action>
+	    </button>
+	</frame>
+
+    </hbox>
+
+    <text wrap="true" use-markup="true">
+	<label>" "</label>
+    </text>
+
+    <text wrap="true" use-markup="true">
+	<label>"<b>Editory</b>"</label>
+    </text>
+
+    <text wrap="true" use-markup="true">
+	<label>" "</label>
+    </text>
+
+    <hbox>
+	 <frame Avidemux>
+	    <pixmap>
+		<input file>/usr/share/pclinuxos/installer/icons/video/avidemux.png</input>
+	    </pixmap>
+	    <button>
+		<label>"Nainstalovat"</label>
+		<action>/usr/sbin/installer-avidemux</action>
+	    </button>
+	</frame>
+
+	<frame Kdenlive>
+	    <pixmap>
+		<input file>/usr/share/pclinuxos/installer/icons/video/kdenlive.png</input>
+	    </pixmap>
+	    <button>
+		<label>"Nainstalovat"</label>
+		<action>/usr/sbin/installer-kdenlive</action>
+	    </button>
+	</frame>
+
+	<frame Kino>
+	    <pixmap>
+		<input file>/usr/share/pclinuxos/installer/icons/video/kino.png</input>
+	    </pixmap>
+	    <button>
+		<label>"Nainstalovat"</label>
+		<action>/usr/sbin/installer-kino</action>
+	    </button>
+	</frame>
+
+	<frame OpenShot>
+	    <pixmap>
+		<input file>/usr/share/pclinuxos/installer/icons/video/openshot.png</input>
+	    </pixmap>
+	    <button>
+		<label>"Nainstalovat"</label>
+		<action>/usr/sbin/installer-openshot</action>
+	    </button>
+	</frame>
+    </hbox>
+
+    <text wrap="true" use-markup="true">
+	<label>" "</label>
+    </text>
+
+    <text wrap="true" use-markup="true">
+	<label>"<b>Nástroje</b>"</label>
+    </text>
+
+    <text wrap="true" use-markup="true">
+	<label>" "</label>
+    </text>
+
+    <hbox>
+	<frame DeVeDe>
+	    <pixmap>
+		<input file>/usr/share/pclinuxos/installer/icons/video/devede.png</input>
+	    </pixmap>
+	    <button>
+		<label>"Nainstalovat"</label>
+		<action>/usr/sbin/installer-devede</action>
+	    </button>
+	</frame>
+
+	<frame K9copy>
+	    <pixmap>
+		<input file>/usr/share/pclinuxos/installer/icons/video/k9copy.png</input>
+	    </pixmap>
+	    <button>
+		<label>"Nainstalovat"</label>
+		<action>/usr/sbin/installer-k9copy</action>
+	    </button>
+	</frame>
+
+	<frame RM OGV FLV to AVI>
+	    <pixmap>
+		<input file>/usr/share/pclinuxos/installer/icons/video/rm-ogv-flv-to-avi.png</input>
+	    </pixmap>
+	    <button>
+		<label>"Nainstalovat"</label>
+		<action>/usr/sbin/installer-rm-ogv-flv-to-avi</action>
+	    </button>
+	</frame>
+
+	<frame WinFF>
+	    <pixmap>
+		<input file>/usr/share/pclinuxos/installer/icons/video/winff.png</input>
+	    </pixmap>
+	    <button>
+		<label>"Nainstalovat"</label>
+		<action>/usr/sbin/installer-winff</action>
+	    </button>
+	</frame>
+
+    </hbox>
+</vbox>
+
+<vbox>
+    <text wrap="true" use-markup="true">
+	<label>" "</label>
+    </text>
+
+    <text wrap="true" use-markup="true">
+	<label>"<b>Přehrávače</b>"</label>
+    </text>
+
+    <text wrap="true" use-markup="true">
+	<label>" "</label>
+    </text>
+
+    <hbox>
+	 <frame Amarok>
+	    <pixmap>
+		<input file>/usr/share/pclinuxos/installer/icons/zvuk/amarok.png</input>
+	    </pixmap>
+	    <button>
+		<label>"Nainstalovat"</label>
+		<action>/usr/sbin/installer-amarok</action>
+	    </button>
+	</frame>
+
+	<frame Clementine>
+	    <pixmap>
+		<input file>/usr/share/pclinuxos/installer/icons/zvuk/clementine.png</input>
+	    </pixmap>
+	    <button>
+		<label>"Nainstalovat"</label>
+		<action>/usr/sbin/installer-clementine</action>
+	    </button>
+	</frame>
+    </hbox>
+
+    <hbox>
+	<frame Audacious>
+	    <pixmap>
+		<input file>/usr/share/pclinuxos/installer/icons/zvuk/audacious.png</input>
+	    </pixmap>
+	    <button>
+		<label>"Nainstalovat"</label>
+		<action>/usr/sbin/installer-audacious</action>
+	    </button>
+	</frame>
+
+	<frame Guayadeque>
+	    <pixmap>
+		<input file>/usr/share/pclinuxos/installer/icons/zvuk/guayadeque.png</input>
+	    </pixmap>
+	    <button>
+		<label>"Nainstalovat"</label>
+		<action>/usr/sbin/installer-guayadeque</action>
+	    </button>
+	</frame>
+
+	<frame XMMS>
+	    <pixmap>
+		<input file>/usr/share/pclinuxos/installer/icons/zvuk/xmms.png</input>
+	    </pixmap>
+	    <button>
+		<label>"Nainstalovat"</label>
+		<action>/usr/sbin/installer-xmms</action>
+	    </button>
+	</frame>
+
+    </hbox>
+
+    <text wrap="true" use-markup="true">
+	<label>" "</label>
+    </text>
+
+    <text wrap="true" use-markup="true">
+	<label>"<b>Editory</b>"</label>
+    </text>
+
+    <text wrap="true" use-markup="true">
+	<label>" "</label>
+    </text>
+
+    <hbox>
+	 <frame Audacity>
+	    <pixmap>
+		<input file>/usr/share/pclinuxos/installer/icons/zvuk/audacity.png</input>
+	    </pixmap>
+	    <button>
+		<label>"Nainstalovat"</label>
+		<action>/usr/sbin/installer-audacity</action>
+	    </button>
+	</frame>
+
+	 <frame LMMS>
+	    <pixmap>
+		<input file>/usr/share/pclinuxos/installer/icons/zvuk/lmms.png</input>
+	    </pixmap>
+	    <button>
+		<label>"Nainstalovat"</label>
+		<action>/usr/sbin/installer-lmms</action>
+	    </button>
+	</frame>
+
+    </hbox>
+</vbox>
+
+<vbox>
+    <text wrap="true" use-markup="true">
+	<label>" "</label>
+    </text>
+
+    <text wrap="true" use-markup="true">
+	<label>"<b>Prohlížení, správa a editace</b>"</label>
+    </text>
+
+    <text wrap="true" use-markup="true">
+	<label>" "</label>
+    </text>
+
+    <hbox>
+
+	 <frame DigiKam & ShowFoto>
+	    <pixmap>
+		<input file>/usr/share/pclinuxos/installer/icons/grafika/digikam.png</input>
+	    </pixmap>
+	    <button>
+		<label>"Nainstalovat"</label>
+		<action>/usr/sbin/installer-digikam</action>
+	    </button>
+	</frame>
+
+	<frame Gwenview>
+	    <pixmap>
+		<input file>/usr/share/pclinuxos/installer/icons/grafika/gwenview.png</input>
+	    </pixmap>
+	    <button>
+		<label>"Informace"</label>
+		<action>/usr/sbin/installer-gwenview-info</action>
+	    </button>
+	</frame>
+
+	<frame Kuickshow>
+	    <pixmap>
+		<input file>/usr/share/pclinuxos/installer/icons/grafika/kuickshow.png</input>
+	    </pixmap>
+	    <button>
+		<label>"Nainstalovat"</label>
+		<action>/usr/sbin/installer-kuickshow</action>
+	    </button>
+	</frame>
+    </hbox>
+
+    <text wrap="true" use-markup="true">
+	<label>" "</label>
+    </text>
+
+    <text wrap="true" use-markup="true">
+	<label>"<b>Pokročilé grafické editory</b>"</label>
+    </text>
+
+    <text wrap="true" use-markup="true">
+	<label>" "</label>
+    </text>
+
+    <hbox>
+	<frame GIMP>
+	    <pixmap>
+		<input file>/usr/share/pclinuxos/installer/icons/grafika/gimp.png</input>
+	    </pixmap>
+	    <button>
+		<label>"Nainstalovat"</label>
+		<action>/usr/sbin/installer-gimp-info</action>
+	    </button>
+	</frame>
+
+	<frame Inkscape>
+	    <pixmap>
+		<input file>/usr/share/pclinuxos/installer/icons/grafika/inkscape.png</input>
+	    </pixmap>
+	    <button>
+		<label>"Nainstalovat"</label>
+		<action>/usr/sbin/installer-inkscape</action>
+	    </button>
+	</frame>
+
+	<frame Blender>
+	    <pixmap>
+		<input file>/usr/share/pclinuxos/installer/icons/grafika/blender.png</input>
+	    </pixmap>
+	    <button>
+		<label>"Nainstalovat"</label>
+		<action>/usr/sbin/installer-blender</action>
+	    </button>
+	</frame>
+    </hbox>
+</vbox>
+
+<vbox>
+    <text wrap="true" use-markup="true">
+	<label>" "</label>
+    </text>
+
+    <text wrap="true" use-markup="true">
+	<label>"<b>Wine</b>"</label>
+    </text>
+
+    <text wrap="true" use-markup="true">
+	<label>" "</label>
+    </text>
+
+    <hbox>
+	<frame Wine>
+	    <pixmap>
+		<input file>/usr/share/pclinuxos/installer/icons/wine/wine.png</input>
+	    </pixmap>
+	    <button>
+		<label>"Nainstalovat"</label>
+		<action>/usr/sbin/installer-wine</action>
+	    </button>
+	    <button>
+		<label>"Wine AppDB"</label>
+		<action>www-browser http://appdb.winehq.org/</action>
+	    </button>
+	</frame>
+
+
+	<frame PlayOnLinux>
+	    <pixmap>
+		<input file>/usr/share/pclinuxos/installer/icons/wine/playonlinux.png</input>
+	    </pixmap>
+	    <button>
+		<label>"Nainstalovat"</label>
+		<action>/usr/sbin/installer-pol</action>
+	    </button>
+	</frame>
+
+    </hbox>
+
+    <hbox>
+	<frame Winetricks>
+	    <pixmap>
+		<input file>/usr/share/pclinuxos/installer/icons/wine/wine.png</input>
+	    </pixmap>
+	    <button>
+		<label>"Nainstalovat"</label>
+		<action>/usr/sbin/installer-winetricks</action>
+	    </button>
+	</frame>
+
+	<frame Q4Wine>
+	    <pixmap>
+		<input file>/usr/share/pclinuxos/installer/icons/wine/q4wine.png</input>
+	    </pixmap>
+	    <button>
+		<label>"Nainstalovat"</label>
+		<action>/usr/sbin/installer-q4wine</action>
+	    </button>
+	</frame>
+    </hbox>
+</vbox>
+
+<vbox>
+    <text wrap="true" use-markup="true">
+	<label>" "</label>
+    </text>
+
+    <text wrap="true" use-markup="true">
+	<label>"<b>Ostatní</b>"</label>
+    </text>
+
+    <text wrap="true" use-markup="true">
+	<label>" "</label>
+    </text>
+
+    <hbox homogeneous="true">
+	<frame Sun Java>
+	    <pixmap>
+		<input file>/usr/share/pclinuxos/installer/icons/other/java.png</input>
+	    </pixmap>
+	    <button>
+		<label>"Nainstalovat"</label>
+		<action>/usr/sbin/installer-java</action>
+	    </button>
+	</frame>
+
+	<frame Ekvivalenty programů>
+	    <pixmap>
+		<input file>/usr/share/pclinuxos/installer/icons/other/help-about.png</input>
+	    </pixmap>
+	    <button>
+		<label>"na serveru ABCLinuxu.cz"</label>
+		<action>www-browser http://www.abclinuxu.cz/software/alternativy</action>
+	    </button>
+
+	    <button>
+		<label>"na serveru proc.linux.cz"</label>
+		<action>www-browser http://proc.linux.cz/ekvivalenty.html</action>
+	    </button>
+	</frame>
+    </hbox>
+
+    <hbox homogeneous="true">
+	<frame Nástroje>
+	    <pixmap>
+		<input file>/usr/share/pclinuxos/installer/icons/other/synaptic.png</input>
+	    </pixmap>
+	    <button>
+		<label>"Aktualizovat systém"</label>
+		<action>/usr/sbin/installer-sys-update</action>
+	    </button>
+	</frame>
+
+	<frame Informace>
+	    <pixmap>
+		<input file>/usr/share/pclinuxos/installer/icons/other/net.png</input>
+	    </pixmap>
+	    <button>
+		<label>"Nastavení sítě"</label>
+		<action>/usr/sbin/installer-connection-info</action>
+	    </button>
+	</frame>
+    </hbox>
+
+    
+</vbox>
+
+
+</notebook>
+
+<hbox>
+      <button>
+        <input file>/usr/share/pclinuxos/installer/icons/button/help.png</input>
+	    <label>"Nápověda"</label>
+	    <action>/usr/sbin/installer-info</action>
+      </button>
+
+      <button>
+        <input file>/usr/share/pclinuxos/installer/icons/button/exit.png</input>
+	    <label>"Ukončit"</label>
+	    <action type="exit">exit 0</action>
+      </button>
+</hbox>
+
+</vbox>
+
+</window>
+'
+
+gtkdialog --program=MAIN_DIALOG
+
+
+
+
+/bin/rm -f $XEI
+exit 0

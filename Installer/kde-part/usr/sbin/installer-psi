@@ -1,0 +1,3 @@
+#! /bin/sh
+
+xterm -fg black -bg grey -hold -T instaluji... -e apt-get install psi psi-i18n -y

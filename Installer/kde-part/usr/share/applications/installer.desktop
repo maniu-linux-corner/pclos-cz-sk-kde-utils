@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=Installer
+Name[cs]=Rychlá instalace programů
+Name[sk]=Rychlá inštalácia programov
+Type=Application
+Exec=/usr/bin/installer
+Icon=/usr/share/icons/packaging_section.png
+Categories=PackageManager;System;Application;X-MandrivaLinux-System-Configuration-Packaging;
