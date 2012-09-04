@@ -1,3 +1,0 @@
-#! /bin/bash
-
-xterm -fg black -bg grey -hold -T instaluji... -e apt-get install eog -y

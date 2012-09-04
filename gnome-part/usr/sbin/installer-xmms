@@ -1,3 +1,0 @@
-#! /bin/sh
-
-xterm -fg black -bg grey -hold -T instaluji... -e apt-get install xmms xmms-eq xmms-mesa xmms-modplug xmms-skins -y
