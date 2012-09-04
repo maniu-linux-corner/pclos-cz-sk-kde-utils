@@ -1,0 +1,16 @@
+[Desktop Entry]
+Type=Service
+Icon=drlogo
+Actions=Analyze
+X-KDE-Priority=TopLevel
+X-KDE-Submenu=DR14 T.meter
+MimeType=audio/*;
+ServiceTypes=KonqPopupMenu/Plugin
+
+[Desktop Action Analyze]
+Exec=xterm -hold -geometry 100x30+300+300 -T Computing... -e dr14_tmeter -f
+Icon=drlogo
+Name=Analyze Dynamic Range
+Name[cs]=Analyzovat Dynamic Range
+Name[sk]=Analyzovať Dynamic Range
+

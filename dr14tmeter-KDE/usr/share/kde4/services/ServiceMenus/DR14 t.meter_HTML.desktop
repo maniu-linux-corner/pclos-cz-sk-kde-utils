@@ -1,0 +1,15 @@
+[Desktop Entry]
+Type=Service
+Icon=drlogo
+Actions=Analyze
+ServiceTypes=KonqPopupMenu/Plugin,inode/directory,inode/directory-locked
+X-KDE-Priority=TopLevel
+X-KDE-Submenu=DR14 T.meter
+
+[Desktop Action Analyze]
+Exec=xterm -hold -geometry 100x30+300+300 -T Computing... -e dr14_tmeter -p -m -r -b -t h
+Icon=drlogo
+Name=Analyze Dynamic Range (HTML)
+Name[cs]=Analyzovat Dynamic Range (HTML)
+Name[sk]=Analyzovať Dynamic Range (HTML)
+
