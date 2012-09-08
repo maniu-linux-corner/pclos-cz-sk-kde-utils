@@ -1,4 +1,4 @@
-2012 8 - 1.0.3 [Gnome]
+2012.8 - 1.0.3 [Gnome]
 [Gnome] Kopete => Instatbird
 [Gnome] Ktorrent => transmission
 [Gnome] SMPlayer => Gnome Mplayer
@@ -7,4 +7,3 @@
 [Gnome] Amarok -> Rhytmbox
 [Gnome] DigiKam&ShowFoto -> Shotwell
 [Gnome] Gwenview -> Viewnior
-

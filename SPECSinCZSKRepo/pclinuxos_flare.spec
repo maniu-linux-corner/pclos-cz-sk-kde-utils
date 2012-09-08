@@ -18,10 +18,10 @@ Buildroot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 %description
 ..
 
-%prep 
+%prep
 %setup -n %{sdir}
 
-%build 
+%build
 cmake -DCMAKE_INSTALL_PREFIX=/usr -DBINDIR=/usr/bin -DDATADIR=/usr/share/flare .
 
 %make
@@ -41,6 +41,5 @@ rm -rf %{buildroot}
 %{_iconsdir}/hicolor/scalable/apps/*
 
 %changelog
-* Wed May 28 2011 Mank <mank@no-ip.sk> 0.13-1pclinux2011.1
+* Wed May 28 2011 Mank <mank1@seznam.cz> 0.13-1pclinux2011.1
 -	Build for PCLinuxOS
-

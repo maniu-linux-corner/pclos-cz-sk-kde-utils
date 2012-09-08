@@ -17,7 +17,7 @@ Requires:	gdm
 %description
 This package contains the Simple Grace (with Changes background) for PCLOS Gnome) theme for gdm, the Gnome Display Manager.
 
-%prep 
+%prep
 %setup -q -n Simply_Grace
 
 %build
@@ -36,6 +36,5 @@ rm -rf $RPM_BUILD_ROOT
 
 
 %changelog
-* Tue Jun 2 2011 Mank <mank at no-ip dot sk> 0.1-1pclos2011
+* Tue Jun 2 2011 Mank <mank1 at seznam dot cz> 0.1-1pclos2011
 - first build
-
