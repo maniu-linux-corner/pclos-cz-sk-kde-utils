@@ -1,13 +1,22 @@
 Name: wdt
 Summary: A Web Develops Tools
 Version: 2.6.6
-Release: 1
+Release: 2
 License: GPL v2
 URL: https://launchpad.net/~petrakis/+archive/wdt-main
 BuildArch: noarch
 Group: Applications
 Source0: WDT.tar.gz
+Source1: wdt.desktop
 Requires: python
+Requires: python-webkitgtk
+Requires: webkit-jsc
+Requires: pyxdg
+Requires: python-feedparser
+Requires: optipng
+Requires: advancecomp
+Requires: libgmime2.0_2
+
 Buildroot: %{_tmppath}/%{name}-%{version}-buildroot
 %description
 A Web Develops Tools
@@ -22,6 +31,7 @@ mkdir -p $RPM_BUILD_ROOT/usr/bin
 mkdir -p $RPM_BUILD_ROOT/usr/share/
 ./installer.sh $RPM_BUILD_ROOT/usr/share/
 cp start/wdt $RPM_BUILD_ROOT/usr/bin/wdt
+install -D -m644 "%{SOURCE1}" "$RPM_BUILD_ROOT/usr/share/applications/wdt.desktop"
 
 %clean
 [ "$RPM_BUILD_ROOT" != "/" ] && rm -rf $RPM_BUILD_ROOT
