@@ -8,7 +8,7 @@ Summary:	%{Summary}
 Name:		%{name}
 Version:	%{version}
 Release:	%{release}
-URL:		http://clintbellanger.net/rpg/
+URL:		http://flarerpg.org
 Source0:	flare.zip
 License:	GPL
 Group:		Games/RPG
@@ -41,5 +41,5 @@ rm -rf %{buildroot}
 %{_iconsdir}/hicolor/scalable/apps/*
 
 %changelog
-* Wed May 28 2011 Mank <mank1@seznam.cz> 0.13-1pclinux2011.1
+* Wed May 28 2012 Mank <mank1@seznam.cz> 0.17-1pclinux2012.2
 -	Build for PCLinuxOS
