@@ -228,11 +228,10 @@ export STRIP=/bin/true
 %doc license_gpl-2.0.txt license_lgpl-2.1.txt
 %{_bindir}/0ad
 %{_bindir}/pyrogenesis%{dbg}
-%{_libdir}/%{name}
+%{_libdir}/*
 %{_datadir}/pixmaps/%{name}.png
 %{_datadir}/applications/%{name}.desktop
 %{_datadir}/%{name}
-%{_datadir}/0ad/system/libmozjs185-ps-release.so.1.0
 %{_mandir}/man6/*.6*
 
 %changelog
