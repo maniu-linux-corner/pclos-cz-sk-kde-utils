@@ -182,11 +182,11 @@ for name in AtlasUI%{dbg} Collada%{dbg}; do
 done
 
 # Install libmozjs185-ps.
-install -D binaries/system/libmozjs185-ps-release.so.1.0 %{buildroot}/%{_datadir}/0ad/system/libmozjs185-ps-release.so.1.0
+install -D binaries/system/libmozjs185-ps-release.so.1.0 %{buildroot}/%{_libdir}/libmozjs185-ps-release.so.1.0
  
 
 %if !%{with_system_enet}
-    install -p -m 755 binaries/system/libenet.so.1 %{buildroot}%{_libdir}/%{name}/libenet.so.1
+    install -p -m 755 binaries/system/libenet.so.1 %{buildroot}%{_libdir}/libenet.so.1
 %endif
 
 %if !%{without_nvtt} && !%{with_system_nvtt}
