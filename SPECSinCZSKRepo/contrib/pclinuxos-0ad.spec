@@ -77,27 +77,27 @@ BuildRequires:	libdevil-devel
 %if %{with_system_enet}
 BuildRequires:	libenet-devel
 %endif
-BuildRequires:	libgamin-1_0-devel
-BuildRequires:	libjs-devel
-BuildRequires:	libcurl-devel
-BuildRequires:	libdnet-devel
-BuildRequires:	libjpeg62-devel
-BuildRequires:	libpng-devel
-BuildRequires:	libvorbis0-devel
-BuildRequires:	libxml2-devel
+BuildRequires:	%{_lib}gamin-1_0-devel
+BuildRequires:	%{_lib}js-devel
+BuildRequires:	%{_lib}curl-devel
+BuildRequires:	%{_lib}dnet-devel
+BuildRequires:	%{_lib}jpeg62-devel
+BuildRequires:	%{_lib}png-devel
+BuildRequires:	%{_lib}vorbis0-devel
+BuildRequires:	%{_lib}xml2-devel
 BuildRequires:	zlib1-devel
 BuildRequires:	nasm
 %if %{with_system_nvtt}
-BuildRequires:	libCg-devel
+BuildRequires:	%{_lib}Cg-devel
 %endif
-BuildRequires:	libopenal-devel
-BuildRequires:	libopenjpeg-devel
+BuildRequires:	%{_lib}openal-devel
+BuildRequires:	%{_lib}openjpeg-devel
 BuildRequires:	pkgconfig
 BuildRequires:	python
-BuildRequires:	libSDL-devel
+BuildRequires:	%{_lib}SDL-devel
 BuildRequires:	subversion
-BuildRequires:	libwxgtku2.8-devel
-BuildRequires:  libgjs-devel
+BuildRequires:	%{_lib}wxgtku2.8-devel
+BuildRequires:  %{_lib}gjs-devel
 
 # http://trac.wildfiregames.com/ticket/1421
 Patch0:		%{name}-rpath.patch
