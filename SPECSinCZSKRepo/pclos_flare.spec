@@ -1,15 +1,15 @@
 %define name	flare
-%define version	0.17git
-%define release	%mkrel 6
+%define version	0.18
+%define release	%mkrel 1
 %define	Summary	A RPG clone with Smal code base
-%define sdir flare
+%define sdir flare-0.18
 
 Summary:	%{Summary}
 Name:		%{name}
 Version:	%{version}
 Release:	%{release}
 URL:		http://flarerpg.org
-Source0:	flare.zip
+Source0:	flare-0.18.tar.gz
 License:	GPL
 Group:		Games/RPG
 BuildRequires:	%{_lib}SDL_image-devel %{_lib}SDL_net-devel %{_lib}SDL_mixer1.2-devel %{_lib}SDL-devel %{_lib}SDL_ttf2.0-devel cmake
