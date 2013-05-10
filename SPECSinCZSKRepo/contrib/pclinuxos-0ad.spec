@@ -24,7 +24,7 @@
 %endif
 
 Name:		0ad
-Version:	0.0.12
+Version:	0.0.13
 Release:	2%{?dist}
 # BSD License:
 #	build/premake/*
@@ -70,15 +70,15 @@ Source1:	%{name}-licensecheck.txt
 # and disabled options were not added to the manual page.
 Source2:	%{name}.6
 Requires:	%{name}-data = %{version}
-BuildRequires:	libboost-devel
+BuildRequires:	%{_lib}boost-devel
 BuildRequires:	cmake
 #BuildRequires:	desktop-file-utils
-BuildRequires:	libdevil-devel
+BuildRequires:	%{_lib}devil-devel
 %if %{with_system_enet}
-BuildRequires:	libenet-devel
+BuildRequires:	%{_lib}enet-devel
 %endif
 BuildRequires:	%{_lib}gamin-1_0-devel
-BuildRequires:	%{_lib}js-devel
+BuildRequires:	js-devel
 BuildRequires:	%{_lib}curl-devel
 BuildRequires:	%{_lib}dnet-devel
 BuildRequires:	%{_lib}jpeg62-devel
@@ -96,11 +96,8 @@ BuildRequires:	pkgconfig
 BuildRequires:	python
 BuildRequires:	%{_lib}SDL-devel
 BuildRequires:	subversion
-BuildRequires:	%{_lib}wxgtku2.8-devel
-BuildRequires:  %{_lib}gjs-devel
-
-# http://trac.wildfiregames.com/ticket/1421
-Patch0:		%{name}-rpath.patch
+BuildRequires:	libwxgtku2.8-devel
+BuildRequires:  libgjs-devel
 
 # Display more clear error messages when creating custom scenarios
 # The suggested usage is:
@@ -130,12 +127,6 @@ hobbyist game developers, since 2001.
 #-----------------------------------------------------------------------
 %prep
 %setup -q -n %{name}-%{version}-alpha
-%patch0 -p1
-%patch1 -p1
-%if !%{with_debug}
-# disable debug build, and "int 0x3" to trap to debugger (x86 only)
-%patch2 -p1
-%endif
 
 %if %{with_system_nvtt}
 rm -fr libraries/nvtt
@@ -143,7 +134,6 @@ rm -fr libraries/nvtt
 
 #-----------------------------------------------------------------------
 %build
-#export CFLAGS="-O0"
 
 # avoid warnings with gcc 4.7 due to _FORTIFY_SOURCE in CPPFLAGS
 export CPPFLAGS="-O0"
@@ -236,7 +226,7 @@ export STRIP=/bin/true
 
 %changelog
 * Fri Jan 4  2013 Mank <Mank1@seznam.cz> - 0.0.12-2
-   Some mirror changes for PCLOS ..
+   Some mirror changes for PCLOS .
 * Wed Dec 19 2012 pcpa <paulo.cesar.pereira.de.andrade@gmail.com> - 0.0.11-2
 - Enable build with system nvtt as it is now approved in Fedora (#823096)
 - Correct release date in manual page
