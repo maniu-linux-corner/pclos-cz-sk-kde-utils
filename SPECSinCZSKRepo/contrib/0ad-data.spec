@@ -1,7 +1,7 @@
 # http://trac.wildfiregames.com/wiki/BuildInstructions#Linux
 
 Name:		0ad-data
-Version:	0.0.12
+Version:	0.0.13
 Release:	1%{?dist}
 Summary:	The Data Files for 0 AD
 License:	CC-BY-SA
