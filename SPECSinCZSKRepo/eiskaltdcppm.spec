@@ -10,15 +10,13 @@
 %define	with_gtk	1
 
 Name:		eiskaltdcpp
-Version:	2.2.7
+Version:	2.2.8
 Release:    1
 License:	GPLv3+
 Summary:	Cross-platform program that uses the Direct Connect and ADC protocol
 Url:		http://code.google.com/p/eiskaltdc
 Group:		Networking/File transfer
 Source0:	%{name}-%{version}.tar.xz
-#Patch0:		eiskaltdcpp-cmake-unset.patch
-#Patch1:		eiskaltdcpp-qt4.4.patch
 
 # Core requirements
 BuildRequires:	boost-devel
@@ -29,7 +27,7 @@ BuildRequires:	zlib-devel
 BuildRequires:	gettext
 BuildRequires:  libidn-devel
 # Build broken with this
-#BuildRequires:	liblua5.1-devel
+BuildRequires:	liblua5.1-devel
 # When enabling miniupnpc in the cmake command line this is needed
 #BuildRequires:	miniupnpc-devel
 
@@ -41,12 +39,13 @@ BuildRequires:	qt4-devel >= 4.7.0
 %endif
 # Gtk requirements
 %if %{with_gtk}
-BuildRequires:	libgnome2-devel
+#BuildRequires:	libgnome2-devel
+#BuildRequires:	%{_lib}gnome-desktop-2-devel
 BuildRequires:	pango-devel
 BuildRequires:	glib2-devel
-BuildRequires:	libgtk+2.0_0-devel
-BuildRequires:	libglade2.0_0-devel
-BuildRequires:	libnotify-devel
+BuildRequires:	%{_lib}gtk+2.0_0-devel
+BuildRequires:	%{_lib}glade2.0_0-devel
+BuildRequires:	%{_lib}notify-devel
 %endif
 BuildRoot:	%{_tmppath}/%{name}-%{version}
 
@@ -95,13 +94,13 @@ compatibility with other clients. This is the GTK front end.
 #patch0 -p0 -b .cmake_unset
 #patch1 -p0 -b .qt44
 
-
+#LOCAL = ON
 %build
 %cmake	.. -DCMAKE_BUILD_TYPE=Release \
 	-DCMAKE_INSTALL_PREFIX=%{_prefix} \
 	-DLIB_INSTALL_DIR=%{_libdir} \
-	-DLOCAL_BOOST=OFF \
-	-DLUA_SCRIPT=OFF \
+	-DLOCAL_BOOST=ON \
+	-DLUA_SCRIPT=ON \
 	-DPERL_REGEX=ON \
 %if %{with_qt}
 	-DUSE_QT=ON \
@@ -116,13 +115,13 @@ compatibility with other clients. This is the GTK front end.
 %endif
 %if %{with_gtk}
 	-DUSE_GTK=ON \
-	-DUSE_LIBGNOME2=ON \
+	-DUSE_LIBGNOME2=OFF \
 	-DUSE_LIBNOTIFY=ON \
 %endif
 	-DWITH_EMOTICONS=ON \
 	-DWITH_SOUNDS=ON \
 	-DWITH_EXAMPLES=ON \
-	-DWITH_LUASCRIPTS=OFF \
+	-DWITH_LUASCRIPTS=ON \
 	-DUSE_MINIUPNP=OFF \
 	-DLOCAL_MINIUPNP=OFF \
 	-DCREATE_MO=ON \
@@ -173,7 +172,7 @@ rm -rf %{buildroot}
 
 %files -f lib%{name}.lang
 %defattr(-,root,root)
-%doc AUTHORS COPYING COPYING.DCPP COPYING.OpenSSL LICENSE ChangeLog.txt ChangeLog_ru.txt ChangeLog_uk.txt
+%doc AUTHORS COPYING LICENSE ChangeLog.txt ChangeLog_ru.txt ChangeLog_uk.txt
 %dir %{_datadir}/%{name}
 %{_libdir}/lib%{name}.so.*
 %{_datadir}/%{name}/update_geoip
@@ -182,6 +181,7 @@ rm -rf %{buildroot}
 %{_datadir}/%{name}/emoticons
 %{_datadir}/pixmaps/%{name}.png
 %{_datadir}/icons/hicolor/*/apps/%{name}.png
+%{_datadir}/eiskaltdcpp/luascripts/*
 
 %if %{with_qt}
 %files qt -f %{name}-qt.lang
