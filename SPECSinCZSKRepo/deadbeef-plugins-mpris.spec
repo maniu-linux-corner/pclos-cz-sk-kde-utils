@@ -1,10 +1,10 @@
 Name: deadbeef-mpris
 Summary: A dbus-plugin for deadbeef
 Version: 2.1.5
-Release: 1
+Release: 2
 License: GPL v2
-URL: https://code.launchpad.net/pidgin-webkit
-Group: Applications/IM
+URL: http://code.google.com/p/deadbeef-mpris-plugin/
+Group: Applications/Audio
 Source0: deadbeef-MPRIS-plugin-2.1.5.tar.gz
 Source1: deadbeef-MPRIS-plugin-2.1.5-glibfix.patch
 BuildRequires:	libgtk+2.0_0-devel
@@ -33,7 +33,6 @@ make DESTDIR="$RPM_BUILD_ROOT" install
 %files
 %defattr(-,root,root)
 %{_libdir}/deadbeef/*
-#%{_bindir}/adium-pidgin
 
 %changelog
 * Sat Mar 25 2013 Mank <Mank1@seznam.cz> 2.1.5-1
