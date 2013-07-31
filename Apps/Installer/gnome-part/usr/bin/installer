@@ -1,7 +1,7 @@
 #! /bin/sh
 #################################################################
-# Vytvořeno pro české vydání PCLinuxOSu 2012
-# Created for the Czech edition of PCLinuxOS 2012
+# Vytvořeno pro české vydání PCLinuxOSu 2013
+# Created for the Czech edition of PCLinuxOS 2013
 # od / by Migelo & Edited by Mank for Gnome Live
 # "WMSUDO" od pinoc (getopenoffice). Děkuji
 # "WMSUDO" by pinoc (getopenoffice). Thanks
@@ -119,16 +119,6 @@ export MAIN_DIALOG='
 	    <button>
 		<label>"Nainstalovat"</label>
 		<action>/usr/sbin/installer-arora</action>
-	    </button>
-	</frame>
-
-	<frame SRWare Iron>
-	    <pixmap>
-		<input file>/usr/share/pclinuxos/installer/icons/internet/iron.png</input>
-	    </pixmap>
-	    <button>
-		<label>"Nainstalovat"</label>
-		<action>/usr/sbin/installer-iron</action>
 	    </button>
 	</frame>
     </hbox>
