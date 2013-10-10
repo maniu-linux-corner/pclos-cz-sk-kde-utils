@@ -24,8 +24,8 @@
 %endif
 
 Name:		0ad
-Version:	0.0.13
-Release:	2%{?dist}
+Version:	0.0.14
+Release:	1%{?dist}
 # BSD License:
 #	build/premake/*
 #	libraries/valgrind/*		(not built/used)
@@ -44,7 +44,7 @@ Release:	2%{?dist}
 License:	GPLv2+ and BSD and MIT and IBM
 Group:		Amusements/Games
 Summary:	Cross-Platform RTS Game of Ancient Warfare
-Url:		http://wildfiregames.com/0ad/
+Url:		http://play0ad.com/
 
 %if %{without_nvtt}
 # wget http://releases.wildfiregames.com/%%{name}-%%{version}-alpha-unix-build.tar.xz
@@ -54,7 +54,7 @@ Url:		http://wildfiregames.com/0ad/
 # tar Jcf %%{name}-%%{version}-alpha-unix-build.tar.xz %%{name}-%%{version}-alpha
 Source0:	%{name}-%{version}-alpha-unix-build.tar.xz
 %else
-Source0:	http://releases.wildfiregames.com/%{name}-%{version}-alpha-unix-build.tar.xz
+Source0:	%{name}-%{version}-alpha-unix-build.tar.xz
 %endif
 
 # Simplify checking differences when updating the package
@@ -173,7 +173,7 @@ done
 
 # Install libmozjs185-ps.
 install -D binaries/system/libmozjs185-ps-release.so.1.0 %{buildroot}/%{_libdir}/libmozjs185-ps-release.so.1.0
- 
+
 
 %if !%{with_system_enet}
     install -p -m 755 binaries/system/libenet.so.1 %{buildroot}%{_libdir}/libenet.so.1

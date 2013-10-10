@@ -1,12 +1,12 @@
 # http://trac.wildfiregames.com/wiki/BuildInstructions#Linux
 
 Name:		0ad-data
-Version:	0.0.13
+Version:	0.0.14
 Release:	1%{?dist}
 Summary:	The Data Files for 0 AD
 License:	CC-BY-SA
 Group:		Amusements/Games
-Url:		http://wildfiregames.com/0ad/
+Url:		http://play0ad.com/
 Source:		http://releases.wildfiregames.com/0ad-%{version}-alpha-unix-data.tar.xz
 BuildRequires:	unzip
 Requires:	fonts-ttf-dejavu
