@@ -4,7 +4,7 @@ Version: 1git14072013
 Release: 1
 License: GPL
 URL: http://git.silverirc.com/cgit.cgi/screenfetch-dev.git/plain/screenfetch-dev
-Group: Applications/IM
+Group: Applications
 Source0: screenFetch.tar.xz
 BuildArch: noarch
 
@@ -39,4 +39,4 @@ cp README.mkdn $RPM_BUILD_ROOT/usr/share/doc/screenfetch/README.mkdn
 
 %changelog
 * Sat Mar 25 2013 Mank <Mank1@seznam.cz> 1git14072013-1
-- Initi Spec
+- Init Spec

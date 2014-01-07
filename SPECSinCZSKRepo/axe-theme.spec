@@ -3,7 +3,6 @@ Name:    	xfwm4-axe-theme
 Version: 	1.0.0
 Release: 	1
 Source0: 	73291-axe.tar.gz
-
 License: 	GPL
 Group: 		Graphical desktop/Xfce
 URL:   	   	http://xfce-look.org/content/show.php/axe?content=73291
