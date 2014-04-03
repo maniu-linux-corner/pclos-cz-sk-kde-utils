@@ -1,19 +1,19 @@
 %define name gnome-bisigi-balanzan-theme
-%define version 1.8.1
+%define version 2.0.0
 %define release %mkrel 1
 
 %define themesdir %{_datadir}/themes
 %define iconsdir %{_datadir}/icons
 %define wallpapersdir %{_datadir}/backgrounds
-%define wallpaperspropdir %{_datadir}/gnome-background-properties
+%define wallpaperspropdir %{_datadir}/mate-background-properties
 %define docsdir %{_docdir}/%{name}
-
+%define themeinside balanzan
 
 Summary: 	Bisigi theme
 Name:    	%{name}
 Version: 	%{version}
 Release: 	%{release}
-Source1: 	balanzan-theme.tar.bz2
+Source1: 	balanzan-theme.tar.gz
 
 License: 	GPL
 Group: 		Graphical desktop/GNOME
@@ -32,7 +32,12 @@ It includes the following components:
 
 %prep
 
-tar --bzip2 -xf %{SOURCE1}
+tar -xf %{SOURCE1}
+cd %{themeinside}-theme/Gtk
+tar -xf %{themeinside}.tar.gz
+cd ..
+cd Icons
+tar --bzip2 -xf %{themeinside}.tar.bz2
 
 %install
 

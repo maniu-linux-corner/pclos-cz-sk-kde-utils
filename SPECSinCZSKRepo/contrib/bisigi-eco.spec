@@ -1,19 +1,19 @@
 %define name gnome-bisigi-eco-theme
-%define version 1.5.1
+%define version 2.0.0
 %define release %mkrel 1
 
 %define themesdir %{_datadir}/themes
 %define iconsdir %{_datadir}/icons
 %define wallpapersdir %{_datadir}/backgrounds
-%define wallpaperspropdir %{_datadir}/gnome-background-properties
+%define wallpaperspropdir %{_datadir}/mate-background-properties
 %define docsdir %{_docdir}/%{name}
-
+%define themeinside eco
 
 Summary: 	Bisigi theme
 Name:    	%{name}
 Version: 	%{version}
 Release: 	%{release}
-Source1: 	eco-theme.tar.bz2
+Source1: 	eco-theme.tar.gz
 
 License: 	GPL
 Group: 		Graphical desktop/GNOME
@@ -32,7 +32,12 @@ It includes the following components:
 
 %prep
 
-tar --bzip2 -xf %{SOURCE1}
+tar -xf %{SOURCE1}
+cd %{themeinside}/Gtk
+tar -xf %{themeinside}.tar.gz
+cd ..
+cd Icons
+tar --bzip2 -xf %{themeinside}.tar.bz2
 
 %install
 
@@ -43,7 +48,7 @@ tar --bzip2 -xf %{SOURCE1}
 %__install -d %{buildroot}%{wallpaperspropdir}
 %__install -d %{buildroot}%{docsdir}
 
-cd eco-theme/Wallpaper
+cd eco/Wallpaper
 %__cp -rf *.png %{buildroot}%{wallpapersdir}
 %__cp -rf *.xml %{buildroot}%{wallpaperspropdir}
 cd ..

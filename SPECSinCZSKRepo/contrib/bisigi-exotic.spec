@@ -1,5 +1,5 @@
 %define name gnome-bisigi-exotic-theme
-%define version 1.6.1
+%define version 2.0.0
 %define release %mkrel 1
 
 %define themesdir %{_datadir}/themes
@@ -7,21 +7,20 @@
 %define wallpapersdir %{_datadir}/backgrounds
 %define wallpaperspropdir %{_datadir}/gnome-background-properties
 %define docsdir %{_docdir}/%{name}
-%define emeralddir %{_datadir}/emerald/themes/exotic
-
+%define themeinside exotic
 
 Summary: 	Bisigi theme
 Name:    	%{name}
 Version: 	%{version}
 Release: 	%{release}
-Source1: 	exotic-theme.tar.bz2
+Source1: 	exotic-theme.tar.gz
 
 License: 	GPL
 Group: 		Graphical desktop/GNOME
 URL:   	   	http://www.bisigi-project.org
 BuildRoot: 	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildArch: 	noarch
-Requires:	murrine emerald
+Requires:	murrine
 
 %description
 Exotic theme contains a full theme for GNOME based system.
@@ -30,11 +29,15 @@ It includes the following components:
    * GTK+ theme
    * Metacity theme
    * Exotic Icons set
-   * Exotic Emerald theme
 
 %prep
 
-tar --bzip2 -xf %{SOURCE1}
+tar -xf %{SOURCE1}
+cd exotic-theme/Gtk
+tar -xf %{themeinside}.tar.gz
+cd ..
+cd Icons
+tar --bzip2 -xf %{themeinside}.tar.bz2
 
 %install
 
@@ -44,7 +47,6 @@ tar --bzip2 -xf %{SOURCE1}
 %__install -d %{buildroot}%{wallpapersdir}
 %__install -d %{buildroot}%{wallpaperspropdir}
 %__install -d %{buildroot}%{docsdir}
-%__install -d %{buildroot}%{emeralddir}
 
 cd exotic-theme/Wallpaper
 %__cp -rf *.jpg %{buildroot}%{wallpapersdir}
@@ -54,9 +56,6 @@ cd ..
 %__cp -rf credits.txt %{buildroot}%{docsdir}
 cd Gtk
 %__cp -rf ./* %{buildroot}%{themesdir}
-cd ..
-cd Emerald
-%__cp -rf *.emerald %{buildroot}%{emeralddir}
 cd ..
 cd Icons
 %__cp -rf ./* %{buildroot}%{iconsdir}
@@ -74,8 +73,6 @@ cd ..
 %{iconsdir}/*
 %{wallpapersdir}/*
 %{wallpaperspropdir}/*
-%{emeralddir}/*
-
 
 %changelog
 * Fri Feb 11 2011 Cristobal Lopez <lopeztobal@gmail.com> 1.6.1-1mib2010.2

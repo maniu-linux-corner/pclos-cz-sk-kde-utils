@@ -1,6 +1,6 @@
 Name: esmska
 Summary: A program to send sms via Internet Gateways
-Version: 1.4
+Version: 1.6
 Release: 1
 License: AGPL
 URL: http://code.google.com/p/esmska/wiki/Download?tm=2

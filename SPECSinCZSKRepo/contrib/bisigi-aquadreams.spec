@@ -1,20 +1,19 @@
 %define name gnome-bisigi-aquadreams-theme
-%define version 1.9.1
+%define version 2.0.0
 %define release %mkrel 1
 
 %define themesdir %{_datadir}/themes
 %define iconsdir %{_datadir}/icons
 %define wallpapersdir %{_datadir}/backgrounds
-%define wallpaperspropdir %{_datadir}/gnome-background-properties
+%define wallpaperspropdir %{_datadir}/mate-background-properties
 %define docsdir %{_docdir}/%{name}
-%define emeralddir %{_datadir}/emerald/themes/aquadreams
-
+%define themeinside aquadreams
 
 Summary: 	Bisigi theme
 Name:    	%{name}
 Version: 	%{version}
 Release: 	%{release}
-Source1: 	aquadreams-theme.tar.bz2
+Source1: 	aquadreams-theme.tar.gz
 
 License: 	GPL
 Group: 		Graphical desktop/GNOME
@@ -33,7 +32,13 @@ It includes the following components:
 
 %prep
 
-tar --bzip2 -xf %{SOURCE1}
+
+tar -xf %{SOURCE1}
+cd aquadreams-theme/Gtk
+tar -xf %{themeinside}.tar.gz
+cd ..
+cd Icons
+tar --bzip2 -xf %{themeinside}.tar.bz2
 
 %install
 
@@ -46,7 +51,7 @@ tar --bzip2 -xf %{SOURCE1}
 %__install -d %{buildroot}%{emeralddir}
 
 ls
-cd aquadreams-theme/Wallpaper
+cd aquadreams-theme/Wallpaper/
 %__cp -rf *.jpg %{buildroot}%{wallpapersdir}
 %__cp -rf *.xml %{buildroot}%{wallpaperspropdir}
 cd ..
@@ -54,9 +59,6 @@ cd ..
 %__cp -rf credits %{buildroot}%{docsdir}
 cd Gtk
 %__cp -rf ./* %{buildroot}%{themesdir}
-cd ..
-cd Emerald
-%__cp -rf *.emerald %{buildroot}%{emeralddir}
 cd ..
 cd Icons
 %__cp -rf ./* %{buildroot}%{iconsdir}
@@ -74,7 +76,6 @@ cd ..
 %{iconsdir}/*
 %{wallpapersdir}/*
 %{wallpaperspropdir}/*
-%{emeralddir}/*
 
 
 %changelog

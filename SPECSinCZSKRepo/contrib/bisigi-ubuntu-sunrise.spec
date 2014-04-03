@@ -1,5 +1,5 @@
 %define name gnome-bisigi-ubuntu-sunrise-theme
-%define version 2.4.1
+%define version 3.0.0
 %define release %mkrel 1
 
 %define themesdir %{_datadir}/themes
@@ -7,21 +7,21 @@
 %define wallpapersdir %{_datadir}/backgrounds
 %define wallpaperspropdir %{_datadir}/gnome-background-properties
 %define docsdir %{_docdir}/%{name}
-%define emeralddir %{_datadir}/emerald/themes/ubuntu-sunrise
+%define themeinside ubuntu-sunrise
 
 
 Summary: 	Bisigi theme
 Name:    	%{name}
 Version: 	%{version}
 Release: 	%{release}
-Source1: 	ubuntu-sunrise-theme.tar.bz2
+Source1: 	ubuntu-sunrise-theme.tar.gz
 
 License: 	GPL
 Group: 		Graphical desktop/GNOME
 URL:   	   	http://www.bisigi-project.org
 BuildRoot: 	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildArch: 	noarch
-Requires:	murrine emerald
+Requires:	murrine
 
 %description
 Ubuntu Sunrise theme contains a full theme for GNOME based system.
@@ -30,11 +30,15 @@ It includes the following components:
    * GTK+ theme
    * Metacity theme
    * Ubuntu Sunrise Icons set
-   * Ubuntu Sunrise Emerald theme
 
 %prep
 
-tar --bzip2 -xf %{SOURCE1}
+tar -xf %{SOURCE1}
+cd ubuntu-sunrise-theme/Gtk/
+tar -xf %{themeinside}.tar.gz
+cd ..
+cd Icons
+tar --bzip2 -xf %{themeinside}.tar.bz2
 
 %install
 
@@ -55,9 +59,6 @@ cd ..
 cd Gtk
 %__cp -rf ./* %{buildroot}%{themesdir}
 cd ..
-cd Emerald
-%__cp -rf *.emerald %{buildroot}%{emeralddir}
-cd ..
 cd Icons
 %__cp -rf ./* %{buildroot}%{iconsdir}
 cd ..
@@ -74,8 +75,6 @@ cd ..
 %{iconsdir}/*
 %{wallpapersdir}/*
 %{wallpaperspropdir}/*
-%{emeralddir}/*
-
 
 %changelog
 * Fri Feb 11 2011 Cristobal Lopez <lopeztobal@gmail.com> 2.4.1-1mib2010.2

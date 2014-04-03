@@ -1,26 +1,26 @@
 %define name gnome-bisigi-orange-theme
-%define version 1.6.1
+%define version 2.0.0
 %define release %mkrel 1
 
 %define themesdir %{_datadir}/themes
 %define wallpapersdir %{_datadir}/backgrounds
 %define wallpaperspropdir %{_datadir}/gnome-background-properties
 %define docsdir %{_docdir}/%{name}
-%define emeralddir %{_datadir}/emerald/themes/orange
+%define themeinside orange
 
 
 Summary: 	Bisigi theme
 Name:    	%{name}
 Version: 	%{version}
 Release: 	%{release}
-Source1: 	orange-theme.tar.bz2
+Source1: 	orange-theme.tar.gz
 
 License: 	GPL
 Group: 		Graphical desktop/GNOME
 URL:   	   	http://www.bisigi-project.org
 BuildRoot: 	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
 BuildArch: 	noarch
-Requires:	murrine emerald humanity-icon-theme
+Requires:	murrine humanity-icon-theme
 
 %description
 Orange theme contains a full theme for GNOME based system.
@@ -29,11 +29,12 @@ It includes the following components:
    * GTK+ theme
    * Metacity theme
    * Humanity Icons set
-   * Orange Emerald theme
 
 %prep
 
-tar --bzip2 -xf %{SOURCE1}
+tar -xf %{SOURCE1}
+cd orange-theme/Gtk/
+tar -xf %{themeinside}.tar.gz
 
 %install
 
@@ -42,7 +43,6 @@ tar --bzip2 -xf %{SOURCE1}
 %__install -d %{buildroot}%{wallpapersdir}
 %__install -d %{buildroot}%{wallpaperspropdir}
 %__install -d %{buildroot}%{docsdir}
-%__install -d %{buildroot}%{emeralddir}
 
 ls
 cd orange-theme/Wallpaper
@@ -54,11 +54,6 @@ cd ..
 cd Gtk
 %__cp -rf ./* %{buildroot}%{themesdir}
 cd ..
-cd Emerald
-%__cp -rf *.emerald %{buildroot}%{emeralddir}
-cd ..
-cd ..
-
 
 %clean
 %__rm -rf %{buildroot}
@@ -69,7 +64,6 @@ cd ..
 %{themesdir}/*
 %{wallpapersdir}/*
 %{wallpaperspropdir}/*
-%{emeralddir}/*
 
 
 %changelog

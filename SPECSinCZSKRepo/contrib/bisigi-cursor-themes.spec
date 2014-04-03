@@ -1,5 +1,5 @@
 %define name gnome-bisigi-cursor-themes
-%define version 0.3
+%define version 2.0
 %define release %mkrel 1
 
 %define iconsdir %{_datadir}/icons
