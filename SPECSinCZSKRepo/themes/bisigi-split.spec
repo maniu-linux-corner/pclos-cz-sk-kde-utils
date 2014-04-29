@@ -1,44 +1,44 @@
-%define name gnome-bisigi-ubuntu-sunrise-theme
-%define version 3.0.0
-%define release %mkrel 1
+%define name gnome-bisigi-split-theme
+%define version 2.0.0
+%define release %mkrel 2
 
 %define themesdir %{_datadir}/themes
 %define iconsdir %{_datadir}/icons
 %define wallpapersdir %{_datadir}/backgrounds
 %define wallpaperspropdir %{_datadir}/gnome-background-properties
 %define docsdir %{_docdir}/%{name}
-%define themeinside ubuntu-sunrise
+%define themeinside split
 
-
-Summary: 	Bisigi theme
-Name:    	%{name}
-Version: 	%{version}
-Release: 	%{release}
-Source1: 	ubuntu-sunrise-theme.tar.gz
-
-License: 	GPL
-Group: 		Graphical desktop/GNOME
-URL:   	   	http://www.bisigi-project.org
-BuildRoot: 	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
-BuildArch: 	noarch
+Summary:	Bisigi theme
+Name:		%{name}
+Version:	%{version}
+Release:	%{release}
+Source1:	split-theme.tar.gz
+License:	GPLv2
+Group:		Graphical desktop/GNOME
+URL:		http://www.bisigi-project.org
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
+BuildArch:	noarch
 Requires:	murrine
 
 %description
-Ubuntu Sunrise theme contains a full theme for GNOME based system.
+Split theme contains a full theme for GNOME based system.
 It includes the following components:
-   * "Ubuntu Sunrise" wallpapers
-   * GTK+ theme
-   * Metacity theme
-   * Ubuntu Sunrise Icons set
+	* "Split" wallpapers
+	* GTK+ theme
+	* Metacity theme
+	* Split Icons set
 
 %prep
 
 tar -xf %{SOURCE1}
-cd ubuntu-sunrise-theme/Gtk/
+cd split/Gtk/
 tar -xf %{themeinside}.tar.gz
 cd ..
 cd Icons
 tar --bzip2 -xf %{themeinside}.tar.bz2
+
+%build
 
 %install
 
@@ -48,14 +48,13 @@ tar --bzip2 -xf %{themeinside}.tar.bz2
 %__install -d %{buildroot}%{wallpapersdir}
 %__install -d %{buildroot}%{wallpaperspropdir}
 %__install -d %{buildroot}%{docsdir}
-%__install -d %{buildroot}%{emeralddir}
 
-cd ubuntu-sunrise-theme/Wallpaper
+cd split/Wallpaper
 %__cp -rf *.jpg %{buildroot}%{wallpapersdir}
 %__cp -rf *.xml %{buildroot}%{wallpaperspropdir}
 cd ..
 %__cp -rf COPYING %{buildroot}%{docsdir}
-%__cp -rf credits.txt %{buildroot}%{docsdir}
+%__cp -rf credits %{buildroot}%{docsdir}
 cd Gtk
 %__cp -rf ./* %{buildroot}%{themesdir}
 cd ..
@@ -76,12 +75,10 @@ cd ..
 %{wallpapersdir}/*
 %{wallpaperspropdir}/*
 
+
 %changelog
-* Fri Feb 11 2011 Cristobal Lopez <lopeztobal@gmail.com> 2.4.1-1mib2010.2
-- Update.
+* Fri Apr 29 2014 Mank <mank@pclinuxos.cz> 2.0.0-2mank2014
+- Update
 
-* Fri Aug 20 2010 Cristobal Lopez <lopeztobal@gmail.com> 2.3.3-1mib2010.1
-- Update.
-
-* Sat Jul 10 2010 Cristobal Lopez <lopeztobal@gmail.com> 2.3.2-1mib2010.1
-- Update.
+* Fri Feb 11 2011 Cristobal Lopez <lopeztobal@gmail.com> 1.5.1-1mib2010.2
+- First time ported to Mandriva by MIB.

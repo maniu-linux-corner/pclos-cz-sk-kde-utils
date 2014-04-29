@@ -1,6 +1,6 @@
 %define name gnome-bisigi-orange-theme
 %define version 2.0.0
-%define release %mkrel 1
+%define release %mkrel 2
 
 %define themesdir %{_datadir}/themes
 %define wallpapersdir %{_datadir}/backgrounds
@@ -9,17 +9,16 @@
 %define themeinside orange
 
 
-Summary: 	Bisigi theme
-Name:    	%{name}
-Version: 	%{version}
-Release: 	%{release}
-Source1: 	orange-theme.tar.gz
-
-License: 	GPL
-Group: 		Graphical desktop/GNOME
-URL:   	   	http://www.bisigi-project.org
-BuildRoot: 	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
-BuildArch: 	noarch
+Summary:	Bisigi theme
+Name:		%{name}
+Version:	%{version}
+Release:	%{release}
+Source1:	orange-theme.tar.gz
+License:	GPLv2
+Group:		Graphical desktop/GNOME
+URL:		http://www.bisigi-project.org
+BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
+BuildArch:	noarch
 Requires:	murrine humanity-icon-theme
 
 %description
@@ -35,6 +34,8 @@ It includes the following components:
 tar -xf %{SOURCE1}
 cd orange-theme/Gtk/
 tar -xf %{themeinside}.tar.gz
+
+%build
 
 %install
 
@@ -67,6 +68,9 @@ cd ..
 
 
 %changelog
+* Fri Apr 29 2014 Mank <mank@pclinuxos.cz> 2.0.0-2mank2014
+- Update
+
 * Fri Feb 11 2011 Cristobal Lopez <lopeztobal@gmail.com> 1.6.1-1mib2010.2
 - Update
 
