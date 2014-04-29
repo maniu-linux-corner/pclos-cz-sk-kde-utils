@@ -2,9 +2,9 @@ Name: esmska
 Summary: A program to send sms via Internet Gateways
 Version: 1.6
 Release: 1
-License: AGPL
+License: AGPLv3
 URL: http://code.google.com/p/esmska/wiki/Download?tm=2
-Group: Applications/Java
+Group: Networking/Other
 Source0: esmska-%{version}.tar.gz
 Source1: esmska.desktop
 Requires: java-1.6.0-sun
@@ -14,10 +14,9 @@ Buildroot: %{_tmppath}/%{name}-%{version}-buildroot
 A program to send sms via Gateways
 
 %prep
-%setup
+%setup -q
 
 %build
-[ "$RPM_BUILD_ROOT" != "/" ] && rm -rf $RPM_BUILD_ROOT
 
 %install
 
@@ -59,7 +58,7 @@ A program to send sms via Gateways
 %{_datadir}/pixmaps/esmska.png
 
 %changelog
-* Sat Jul 29 2013 Mank <Mank1@seznam.cz> 1.4-1
-- esmska: Version: 1.4
+* Sat Jul 29 2013 Mank <Mank1@seznam.cz> 1.6-1
+- esmska: Version: 1.6
 * Sat Mar 25 2011 Mank <Mank1@seznam.cz> 1.3-1
 - esmska: Version: 1.3
