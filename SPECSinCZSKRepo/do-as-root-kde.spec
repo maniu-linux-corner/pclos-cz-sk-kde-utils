@@ -1,10 +1,10 @@
 Name: DoAsRoot-cs-sk
 Summary: Do As Root je servisní menu pro KDE, které usnadňuje použití práv správce pro mazání, editaci a otevírání složek a souborů.
 Version: 2.1.1
-Release: 1
-License: GPL
+Release: 2
+License: GPLv2
 URL: http://www.kde-apps.org/content/show.php/Open+Dolphin+as+Root?content=102548
-Group: Applications/KDE
+Group: Graphical desktop/KDE
 Source0: DoAsRoot-cs-sk-2.1.1.tar.xz
 Requires: glibc
 Requires: kde-baseapps-core
@@ -17,10 +17,9 @@ Buildroot: %{_tmppath}/%{name}-%{version}-buildroot
 Do As Root je servisní menu pro KDE, které usnadňuje použití práv správce pro mazání, editaci a otevírání složek a souborů.
 
 %prep
-%setup
+%setup -q
 
 %build
-[ "$RPM_BUILD_ROOT" != "/" ] && rm -rf $RPM_BUILD_ROOT
 
 %install
 cp -r ./ $RPM_BUILD_ROOT/
@@ -35,5 +34,5 @@ cp -r ./ $RPM_BUILD_ROOT/
 /usr/share/kde4/services/ServiceMenus/*
 /.directory
 %changelog
-* Sat Mar 25 2011 Mank <Mank1@seznam.cz> 0.0.1-1
-- do-as-root: Version pre: 0.0.1
+* Sat Mar 25 2014 Mank <Mank@pclinuxos.cz> 2.1.1-2
+- do-as-root: Version : 2.1.1-1
