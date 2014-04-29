@@ -25,7 +25,7 @@ BuildRequires:	pcre-devel
 BuildRequires:	pkgconfig
 BuildRequires:	zlib-devel
 BuildRequires:	gettext
-BuildRequires:  libidn-devel
+BuildRequires:	libidn-devel
 # Build broken with this
 BuildRequires:	liblua5.1-devel
 # When enabling miniupnpc in the cmake command line this is needed
@@ -39,8 +39,6 @@ BuildRequires:	qt4-devel >= 4.7.0
 %endif
 # Gtk requirements
 %if %{with_gtk}
-#BuildRequires:	libgnome2-devel
-#BuildRequires:	%{_lib}gnome-desktop-2-devel
 BuildRequires:	pango-devel
 BuildRequires:	glib2-devel
 BuildRequires:	%{_lib}gtk+2.0_0-devel
@@ -147,11 +145,9 @@ rm -rf %{buildroot}/%{_datadir}/%{name}/qt/qtscripts/gnome
 
 %if %{with_gtk}
 %find_lang %{name}-gtk
-#suse_update_desktop_file %{name}-gtk
 %endif
 
 %if %{with_qt}
-#suse_update_desktop_file %{name}-qt
 find %{buildroot} -name "*.qm" | sed 's:'%{buildroot}'::
 s:.*/\([a-zA-Z]\{2\}\).qm:%lang(\1) \0:' > %{name}-qt.lang
 %endif
