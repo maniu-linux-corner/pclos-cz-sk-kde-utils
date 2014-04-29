@@ -2,9 +2,9 @@ Name: guest_uvitani
 Summary: Uvitani na Live CD/DVD pro KDE
 Version: 0.0.1
 Release: 1
-License: GPL
+License: GPLv2
 URL: http://pclinuxos.cz
-Group: Applications/KDE
+Group: Graphical desktop/KDE
 Source0: guest_uvitani.tar.xz
 Requires: glibc
 Requires: libstdc++6
@@ -15,10 +15,9 @@ Buildroot: %{_tmppath}/%{name}-%{version}-buildroot
 Uvitani na Live CD/DVD pro KDE
 
 %prep
-%setup
+%setup -q
 
 %build
-[ "$RPM_BUILD_ROOT" != "/" ] && rm -rf $RPM_BUILD_ROOT
 
 %install
 cp -r ./ $RPM_BUILD_ROOT/
