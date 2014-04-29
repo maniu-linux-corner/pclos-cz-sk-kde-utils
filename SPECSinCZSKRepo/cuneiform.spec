@@ -1,11 +1,10 @@
-%define rel             1
-%define distsuffix      mank
-%define name            cuneiform-linux
-%define	version		1.1.0
-%define abi		0
-%define libname		%mklibname cuneiform %{abi}
-%define develname	%mklibname cuneiform -d
-
+%define rel				1
+%define distsuffix		mank
+%define name			cuneiform-linux
+%define	version			1.1.0
+%define abi				0
+%define libname			%mklibname cuneiform %{abi}
+%define develname		%mklibname cuneiform -d
 # datafiles must have DOS-style EOL
 %define dont_fix_eol	1
 
@@ -83,6 +82,9 @@ rm -rf %{buildroot}
 
 
 %changelog
+* Thu Apr 29 2014 Mank <mank@pclinuxos.cz> 1.1.0-1pclos2012
+- Build for PCLinuxOS
+
 * Sun Jan 15 2012 Dmitry Mikhirev <dmikhirev@mandriva.org> 1.1.0-2mdv2011.0
 + Revision: 761431
 - don't suggest frontends to avoid dependency hell
