@@ -5,8 +5,6 @@
 
 Source0:	flare.0.19.tar.gz
 Source2:	flare.desktop
-
-
 Summary:	%{Summary}
 Name:		%{name}
 Version:	%{version}
@@ -16,7 +14,6 @@ License:	GPL
 %description
 ...
 
-
 %package data
 Summary:	%{Summary} Data Files
 Version:	%{version}
@@ -24,7 +21,7 @@ Release:	%{release}
 URL:		http://flarerpg.org
 License:	GPL
 %description data
-... Data Files
+ Data Files
 
 Group:		Games/RPG
 BuildRequires:	%{_lib}SDL_image-devel %{_lib}SDL_net-devel %{_lib}SDL_mixer1.2-devel %{_lib}SDL-devel %{_lib}SDL_ttf-devel cmake
@@ -59,6 +56,6 @@ rm -rf %{buildroot}
 %{_datadir}/flare/*
 
 %changelog
-* Wed Jun 15 2013 Mank <mank1@seznam.cz> 0.19-1
+* Wed Jun 15 2013 Mank <mank@pclinuxos.cz> 0.19-1
 -	Build for PCLinuxOS
 

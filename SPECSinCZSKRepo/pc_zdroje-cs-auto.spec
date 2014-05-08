@@ -2,7 +2,7 @@ Name: config-cs-sk
 Summary: A Sources List for PCLOS (cs&sk)
 Version: 0.0.1
 Release: 1
-License: GPL v2
+License: GPLv2
 BuildArch: noarch
 URL: http://www.pclinuxos.cz
 Group: Applications/System
@@ -15,7 +15,6 @@ A config cz&sk
 %setup -c %{name}
 
 %build
-[ "$RPM_BUILD_ROOT" != "/" ] && rm -rf $RPM_BUILD_ROOT
 
 %install
 mkdir -p $RPM_BUILD_ROOT/etc/rc.d/init.d/
@@ -43,5 +42,5 @@ ln -s /etc/init.d/repo-mank /etc/rc5.d/S99repo-mank
 /etc/rc.d/init.d/*
 
 %changelog
-* Sat Jun 23 2012 Mank <Mank1@seznam.cz> 0.0.1-1
+* Sat Jun 23 2012 Mank <mank@pclinuxos.cz> 0.0.1-1
 - config-cs-sk Version : 0.0.1

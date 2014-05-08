@@ -2,7 +2,7 @@ Name: pidgin-webkit
 Summary: A Webkit Plugin for pidgin
 Version: 69
 Release: 1
-License: GPL v2
+License: GPLv2
 URL: https://code.launchpad.net/pidgin-webkit
 Group: Applications/IM
 Source0: pidgin-webkit.tar.xz
@@ -19,7 +19,6 @@ A Webkit-based and adium styles conversion for pidgin
 %setup -n pidgin-webkit
 
 %build
-[ "$RPM_BUILD_ROOT" != "/" ] && rm -rf $RPM_BUILD_ROOT
 patch -i %{SOURCE5}
 make
 
@@ -41,5 +40,5 @@ mv -Tf webkit.so $RPM_BUILD_ROOT/usr/lib/pidgin/webkit.so
 %{_bindir}/adium-pidgin
 
 %changelog
-* Sat Mar 25 2013 Mank <Mank1@seznam.cz> 69-1
+* Sat Mar 25 2013 Mank <mank@pclinuxos.cz> 69-1
 - pidgin-webkit: Version pre: 69

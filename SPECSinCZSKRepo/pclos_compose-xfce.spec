@@ -2,7 +2,7 @@ Name: xfce-composite-editor
 Summary: A Web Develops Tools
 Version: 2.6.6
 Release: 3
-License: GPL v2
+License: GPLv2
 URL: http://keithhedger.hostingsiteforfree.com/pages/apps.html
 BuildArch: noarch
 Group: Applications/Xfce
@@ -35,5 +35,5 @@ install -m 744 xfcecomped.desktop $RPM_BUILD_ROOT/usr/share/applications/xfcecom
 %{_datadir}/applications/xfcecomped.desktop
 
 %changelog
-* Sat Mar 25 2013 Mank <Mank1@seznam.cz> 2.6.6-3
+* Sat Mar 25 2013 Mank <mank@pclinuxos.cz> 2.6.6-3
 -  init spec

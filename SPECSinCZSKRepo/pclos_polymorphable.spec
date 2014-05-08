@@ -11,7 +11,7 @@ Release:	%{release}
 URL:		http://flarerpg.org
 Source0:	flare-engine-branch0.18.zip
 Source1: polymorphable.tar.xz
-License:	GPL
+License:	GPLv2
 Group:		Games/RPG
 BuildRequires:	%{_lib}SDL_image-devel %{_lib}SDL_net-devel %{_lib}SDL_mixer1.2-devel %{_lib}SDL-devel %{_lib}SDL_ttf2.0-devel cmake
 Buildroot:	%{_tmppath}/%{name}-%{version}-%{release}-buildroot
@@ -43,5 +43,5 @@ rm -rf %{buildroot}
 %{_iconsdir}/hicolor/scalable/apps/*
 
 %changelog
-* Wed May 28 2012 Mank <mank1@seznam.cz> 0.17-1pclinux2012.2
+* Wed May 28 2012 Mank <mank@pclinuxos.cz> 0.17-1pclinux2012.2
 -	Build for PCLinuxOS

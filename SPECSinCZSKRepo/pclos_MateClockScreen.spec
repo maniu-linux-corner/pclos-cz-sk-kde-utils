@@ -2,7 +2,7 @@ Name: mate-clock-screensaver
 Summary: A Screensaver with Analog clock
 Version: 1.0.1
 Release: 3
-License: GPL v3
+License: GPLv3
 Group: Applications/Mate
 Source0: gnome-clock-screensaver-1.0.1.tar.gz
 Source5: anclock.desktop
@@ -23,7 +23,7 @@ A ScreenSaver with Analog Clock
 rm $RPM_BUILD_ROOT/%{_datadir}/applications/screensavers/anclock.desktop
 cp -f %{SOURCE5} $RPM_BUILD_ROOT/%{_datadir}/applications/screensavers/anclock.desktop
 %clean
-[ "$RPM_BUILD_ROOT" != "/" ] && rm -rf $RPM_BUILD_ROOT
+
 make clean
 
 %files
@@ -33,5 +33,5 @@ make clean
 %{_datadir}/applications/screensavers/anclock.desktop
 
 %changelog
-* Sat Dec 12 2013 Mank <Mank1@seznam.cz> 1.0.1-2
+* Sat Dec 12 2013 Mank <mank@pclinuxos.cz> 1.0.1-2
 - anclock: Version 1.0.1
